@@ -1,4 +1,5 @@
 <?php require 'config.php'; ?>
+<?php require 'functions.php'; ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,3 +11,4 @@
 
 </head>
 <body>
+<div class="container">
