@@ -2,7 +2,7 @@
 /**
  * Site Setup
  *
- * @package seacms
+ * @package quark
  */
 
 // Import Setup class.

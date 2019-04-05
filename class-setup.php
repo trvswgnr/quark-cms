@@ -2,7 +2,7 @@
 /**
  * Class: Setup
  *
- * @package seacms
+ * @package quark
  */
 
 // Import database connection object $conn.
