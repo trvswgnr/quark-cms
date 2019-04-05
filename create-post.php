@@ -7,12 +7,13 @@ if ( isset( $_POST['submit'] ) ) {
 	$modified = $_POST['modified'] ?: $now;
 	$title    = $_POST['title'] ?: 'New Post';
 	$content  = $_POST['content'] ?: 'This is just placeholder content. Edit or delete this.';
+	$slug     = $_POST['slug'] ?: title_to_slug( $title );
 	$type     = 'post';
 
 	try {
-		$sql  = 'INSERT INTO posts (date, modified, title, content, type) VALUES (?,?,?,?,?)';
+		$sql  = 'INSERT INTO posts (date, modified, title, content, slug, type) VALUES (?,?,?,?,?,?)';
 		$stmt = $conn->prepare( $sql );
-		$stmt->execute( [ $date, $modified, $title, $content, $type ] );
+		$stmt->execute( [ $date, $modified, $title, $content, $slug, $type ] );
 	} catch ( PDOException $e ) {
 		echo 'Error Adding Row: ' . $e->getMessage();
 	}
@@ -24,6 +25,10 @@ if ( isset( $_POST['submit'] ) ) {
 	<div>
 		<label for="title">Title:</label>
 		<input type="text" name="title">
+	</div>
+	<div>
+		<label for="slug">Slug:</label>
+		<input type="text" name="slug">
 	</div>
 	<div>
 		<label for="content">Content</label>
