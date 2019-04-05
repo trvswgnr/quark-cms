@@ -2,7 +2,7 @@
 /**
  * Security Functions
  *
- * @package foodtaw
+ * @package seacms
  */
 
 /**

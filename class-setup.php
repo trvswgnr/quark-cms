@@ -2,7 +2,7 @@
 /**
  * Class: Setup
  *
- * @package foodtaw
+ * @package seacms
  */
 
 // Import database connection object $conn.

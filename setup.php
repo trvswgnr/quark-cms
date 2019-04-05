@@ -2,7 +2,7 @@
 /**
  * Site Setup
  *
- * @package foodtaw
+ * @package seacms
  */
 
 // Import Setup class.
