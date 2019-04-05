@@ -15,6 +15,7 @@ try {
 <p><small>Published: <?php echo $post['date']; ?></small></p>
 <p><small>Modified: <?php echo $post['modified']; ?></small></p>
 <div><?php echo $post['content']; ?></div>
+<p>
 <a href="<?php echo site_directory() . '/edit-post.php?id=' . $post['ID']; ?>">Edit</a>
-
+</p>
 <?php require 'footer.php'; ?>
