@@ -34,7 +34,7 @@ try {
 	echo 'Error Getting Post: ' . $e->getMessage();
 }
 ?>
-<a href="<?php echo get_site_directory() . '/single.php?id=' . $post['ID']; ?>">View Post</a>
+<a href="<?php echo get_site_directory() . '/' . $post['slug']; ?>">View Post</a>
 <h1>Edit Post</h1>
 <form action="" method="post">
 	<div>
