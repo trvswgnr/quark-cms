@@ -27,3 +27,7 @@ function get_remote_file_contents( $url ) {
 	curl_close( $ch );
 	return $data;
 }
+
+function remote_file_contents( $url ) {
+	echo get_remote_file_contents( $url );
+}
