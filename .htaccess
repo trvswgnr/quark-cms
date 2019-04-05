@@ -1,5 +1,5 @@
 RewriteEngine On
-RewriteRule ^sea-cms?$ index.php
+RewriteRule ^quark-cms?$ index.php
 RewriteCond %{SCRIPT_FILENAME} !-d  
 RewriteCond %{SCRIPT_FILENAME} !-f
 RewriteRule ^([^/]+)/?$ single.php?slug=$1 [L]
