@@ -14,19 +14,26 @@ if ( filter_input( INPUT_POST, 'submit', FILTER_SANITIZE_SPECIAL_CHARS ) ) {
 	$setup = new Setup( $conn );
 }
 
-if ($_POST['submit_table']) {
+function create_column() {
 	try {
-		$table = 'posts';
-		$column = $_POST['column_name'] ?: die();
+		if ( ! $_POST['column_name'] ) {
+			return false;
+		}
+		$table     = 'posts';
+		$column    = $_POST['column_name'];
 		$data_type = $_POST['data_type'];
-		$sql   = "ALTER TABLE $table
-			ADD $column $data_type NOT NULL;";
 
+		$sql = "ALTER TABLE $table
+			ADD $column $data_type NOT NULL;";
 		$conn->exec( $sql );
 		echo "Added $column successfully.";
 	} catch ( PDOException $e ) {
 		echo "Error Creating $column: " . $e->getMessage();
 	}
+}
+
+if ( $_POST['submit_table'] ) {
+	create_column();
 }
 ?>
 
