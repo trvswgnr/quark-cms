@@ -41,7 +41,8 @@ class Setup {
 				date datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
 				modified datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
 				title text NOT NULL,
-				content LONGTEXT NOT NULL,
+				content longtext NOT NULL,
+				slug text NOT NULL,
 				type varchar(20) NOT NULL DEFAULT 'post');";
 
 			$conn->exec( $sql );
