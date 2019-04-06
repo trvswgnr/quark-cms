@@ -1,0 +1,6 @@
+{
+    "require": {
+		"ezyang/htmlpurifier": "4.10.*",
+		"monolog/monolog": "1.0.*"
+    }
+}
