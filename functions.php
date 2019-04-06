@@ -13,7 +13,7 @@ function site_directory() {
 
 function title_to_slug( $string ) {
 	$string = strtolower( $string );
-	$slug = preg_replace( '/[^A-Za-z0-9-]+/', '-', $string );
+	$slug   = preg_replace( '/[^A-Za-z0-9-]+/', '-', $string );
 	return $slug;
 }
 
@@ -30,4 +30,18 @@ function get_remote_file_contents( $url ) {
 
 function remote_file_contents( $url ) {
 	echo get_remote_file_contents( $url );
+}
+
+function list_file_links( $ext = '*' ) {
+	$files = glob( "*.$ext" );
+
+	echo '<ul>' . implode( '', array_map( 'sprintf', array_fill( 0, count( $files ), '<li><a href="%s">%s</a></li>' ), $files, $files ) ) . '</ul>';
+}
+
+function quark_debug( $bool ) {
+	$enabled   = ( $bool === true ) ? 1 : 0;
+	$reporting = ( $bool === true ) ? E_ALL : 0;
+	ini_set( 'display_errors', $enabled );
+	ini_set( 'display_startup_errors', $enabled );
+	error_reporting( $reporting );
 }
