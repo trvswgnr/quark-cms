@@ -5,10 +5,10 @@
  * @package quark
  */
 
+require 'header.php';
+
 // Import Setup class.
 require 'class-setup.php';
-
-require 'header.php';
 
 if ( filter_input( INPUT_POST, 'submit', FILTER_SANITIZE_SPECIAL_CHARS ) ) {
 	$setup = new Setup( $conn );
@@ -42,6 +42,7 @@ if ( $_POST['submit_table'] ) {
 	<input type="submit" name="submit" value="Initialize Site">
 </form>
 
+<!-- 
 <h2>Add Column to 'posts'</h2>
 <form action="" method="post">
 	<label for="column_name">Column Name</label>
@@ -52,5 +53,6 @@ if ( $_POST['submit_table'] ) {
 
 	<div><input type="submit" name="submit_table" value="Add Column"></div>
 </form>
+-->
 
 <?php require 'footer.php'; ?>
