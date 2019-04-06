@@ -5,6 +5,7 @@ function connection() {
 	$user   = 'root';
 	$pass   = 'root';
 	$dbname = 'quark_cms';
+
 	try {
 		$conn = new PDO( "mysql:host=$host;", $user, $pass );
 		$conn->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
