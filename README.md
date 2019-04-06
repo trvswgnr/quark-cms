@@ -8,8 +8,8 @@ Built in PHP, Quark stays close to the language instead of abstracting, which me
 
 ## Getting started:
 
-1. Edit 'connection.php' and replace the variables with your local database user, pass, and preferred dbname.
-1. Navigate to /setup.php and click Initialize Site button.
+1. Open Terminal run `composer install` to install dependencies.
+1. Navigate to /setup.php, fill in database credentials and click Initialize Site button.
 1. Navigate to /create-post.php and create your first post.
 1. Posts are shown at /display-posts.php
 
