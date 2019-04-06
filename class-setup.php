@@ -18,12 +18,17 @@ class Setup {
 
 	/**
 	 * Constructor
-	 *
-	 * @param PDO $conn Database connection object.
 	 */
-	public function __construct( PDO $conn ) {
+	public function __construct() {
+	}
+
+	/**
+	 * Connection
+	 *
+	 * @param PDO $conn
+\	 */
+	public function connection( PDO $conn ) {
 		$this->conn = $conn;
-		$this->create_tables();
 	}
 
 	/**
@@ -47,5 +52,16 @@ class Setup {
 		} catch ( PDOException $e ) {
 			echo "Error Creating Table '$table': " . $e->getMessage();
 		}
+	}
+
+	public function create_connection_file() {
+		$host   = secure_input( 'host' ) ?: 'localhost';
+		$user   = secure_input( 'user' ) ?: 'root';
+		$pass   = $_POST['pass'] ?: 'root';
+		$dbname = secure_input( 'dbname' ) ?: 'quark_cms';
+
+		$filename = 'credentials.php';
+		$content  = "<?php \$host   = '$host';\n\$user   = '$user';\n\$pass   = '$pass';\n\$dbname = '$dbname';\n";
+		file_put_contents( $filename, $content);
 	}
 }
