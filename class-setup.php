@@ -5,9 +5,6 @@
  * @package quark
  */
 
-// Import database connection object $conn.
-require 'connection.php';
-
 /**
  * Initialize Site
  */
