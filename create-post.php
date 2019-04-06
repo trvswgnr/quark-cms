@@ -3,9 +3,9 @@
 <?php
 if ( isset( $_POST['submit'] ) ) {
 	$now      = date( 'Y-m-d H:i:s' );
-	$date     = $_POST['date'] ?: $now;
-	$modified = $_POST['modified'] ?: $now;
-	$title    = $_POST['title'] ?: 'New Post';
+	$date     = secure_input('date') ?: $now;
+	$modified = secure_input('modified') ?: $now;
+	$title    = secure_input('title') ?: 'New Post';
 	$content  = $_POST['content'] ?: 'This is just placeholder content. Edit or delete this.';
 	$slug     = $_POST['slug'] ?: title_to_slug( $title );
 	$type     = 'post';
@@ -13,7 +13,8 @@ if ( isset( $_POST['submit'] ) ) {
 	try {
 		$sql  = 'INSERT INTO posts (date, modified, title, content, slug, type) VALUES (?,?,?,?,?,?)';
 		$stmt = $conn->prepare( $sql );
-		$stmt->execute( [ $date, $modified, $title, $content, $slug, $type ] );
+		$stmt->execute( [ $date, $modified, $title, sanitize_html( $content ), $slug, $type ] );
+		echo '<p class="text-success">Post created successfully!</p>';
 	} catch ( PDOException $e ) {
 		echo 'Error Adding Row: ' . $e->getMessage();
 	}
