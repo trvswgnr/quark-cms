@@ -22,3 +22,5 @@ Built in PHP, Quark stays close to the language instead of abstracting, which me
 * Create login feature and restrict sensitive pages
 * Style admin pages
 * Create REST API
+
+#### Version 0.1.0-alpha
