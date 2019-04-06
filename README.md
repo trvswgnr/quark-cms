@@ -6,6 +6,13 @@ Built in PHP, Quark stays close to the language instead of abstracting, which me
 
 **!!! This is a work in progress and is still VERY insecure. DO NOT HOST ON A LIVE SERVER. !!!**
 
+## Getting started:
+
+1. Edit 'connection.php' and replace the variables with your local database user, pass, and preferred dbname.
+1. Navigate to /setup.php and click Initialize Site button.
+1. Navigate to /create-post.php and create your first post.
+1. Posts are shown at /display-posts.php
+
 ## To Do:
 
 * Move core functions to classes
