@@ -16,6 +16,6 @@ try {
 <p><small>Modified: <?php echo sanitize_html( $post['modified'] ); ?></small></p>
 <div><?php echo sanitize_html( $post['content'] ); ?></div>
 <p>
-<a href="<?php echo get_site_url() . 'edit-post.php?id=' . $post['ID']; ?>">Edit</a>
+<a href="<?php echo get_site_url() . 'edit-post.php?id=' . $post['id']; ?>">Edit</a>
 </p>
 <?php require 'footer.php'; ?>
