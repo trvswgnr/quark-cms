@@ -26,9 +26,6 @@ require 'class-setup.php';
 
 if ( secure_input( 'submit' ) ) {
 	$setup = new Setup();
-	$setup->create_connection_file();
-	require 'connection.php';
-	$setup->connection( $conn );
 	$redirect_url = get_site_url() . 'index.php';
 	header( "Location: $redirect_url", true, 303 );
 	die();
@@ -70,7 +67,7 @@ function create_column() {
 	<input type="text" name="user">
 
 	<label for="pass">Password</label>
-	<input type="text" name="password">
+	<input type="text" name="pass">
 
 	<div>
 		<input type="submit" name="submit" value="Initialize Site">

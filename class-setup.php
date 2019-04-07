@@ -20,15 +20,11 @@ class Setup {
 	 * Constructor
 	 */
 	public function __construct() {
-	}
-
-	/**
-	 * Connection
-	 *
-	 * @param PDO $conn
-\	 */
-	public function connection( PDO $conn ) {
+		$this->create_credentials_file();
+		// import $conn variable.
+		require_once 'connection.php';
 		$this->conn = $conn;
+		$this->create_tables();
 	}
 
 	/**
@@ -39,7 +35,7 @@ class Setup {
 			$conn  = $this->conn;
 			$table = 'posts';
 			$sql   = "CREATE TABLE IF NOT EXISTS $table(
-				ID bigint(20) AUTO_INCREMENT PRIMARY KEY,
+				id bigint(20) AUTO_INCREMENT PRIMARY KEY,
 				date datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
 				modified datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
 				title text NOT NULL,
@@ -48,16 +44,31 @@ class Setup {
 				type varchar(20) NOT NULL DEFAULT 'post');";
 
 			$conn->exec( $sql );
-			echo "Table '$table' exists or created successfully.";
+
+			$table = 'users';
+			$sql   = "CREATE TABLE IF NOT EXISTS $table(
+				id bigint(20) AUTO_INCREMENT PRIMARY KEY,
+				created datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
+				user varchar(100) NOT NULL,
+				email varchar(100) NOT NULL,
+				password varchar(100) NOT NULL,
+				role varchar(100) NOT NULL);";
+
+			$conn->exec( $sql );
+
+			echo 'Tables created successfully.';
 		} catch ( PDOException $e ) {
-			echo "Error Creating Table '$table': " . $e->getMessage();
+			echo 'Error Creating Tables: ' . $e->getMessage();
 		}
 	}
 
-	public function create_connection_file() {
+	/**
+	 * Create 'credentials.php' File
+	 */
+	public function create_credentials_file() {
 		$host   = secure_input( 'host' ) ?: 'localhost';
 		$user   = secure_input( 'user' ) ?: 'root';
-		$pass   = $_POST['pass'] ?: 'root';
+		$pass   = filter_input( INPUT_POST, 'pass' ) ?: 'root';
 		$dbname = secure_input( 'dbname' ) ?: 'quark_cms';
 
 		$filename = 'credentials.php';

@@ -5,9 +5,9 @@ if ( isset( $_POST['submit'] ) ) {
 	$now      = date( 'Y-m-d H:i:s' );
 	$date     = secure_input('date') ?: $now;
 	$modified = secure_input('modified') ?: $now;
-	$title    = secure_input('title') ?: 'New Post';
-	$content  = $_POST['content'] ?: 'This is just placeholder content. Edit or delete this.';
-	$slug     = $_POST['slug'] ?: title_to_slug( $title );
+	$title    = secure_input('title') ?: 'A New Post';
+	$content  = filter_input( INPUT_POST, 'content' ) ?: 'Placeholder content!';
+	$slug     = secure_input('slug') ?: title_to_slug( $title );
 	$type     = 'post';
 
 	try {
