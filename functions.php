@@ -1,5 +1,9 @@
 <?php
-require 'security.php';
+/**
+ * Global Functions
+ *
+ * @package quark
+ */
 
 /**
  * Get Site URL as Variable
@@ -58,4 +62,15 @@ function quark_debug( $bool ) {
 	ini_set( 'display_errors', $enabled );
 	ini_set( 'display_startup_errors', $enabled );
 	error_reporting( $reporting );
+}
+
+function get_current_file () {
+	preg_match( '/([^\/]+$)/', $_SERVER['PHP_SELF'], $match);
+	return $match[0];
+}
+
+
+function is_current_file( $file ) {
+	$current_file = get_current_file();
+	return $file === $current_file ? true : false;
 }

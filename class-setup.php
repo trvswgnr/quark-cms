@@ -20,7 +20,7 @@ class Setup {
 	 * Constructor
 	 */
 	public function __construct() {
-		$this->create_credentials_file();
+		$this->create_config_file();
 		// import $conn variable.
 		require_once 'connection.php';
 		$this->conn = $conn;
@@ -63,16 +63,16 @@ class Setup {
 	}
 
 	/**
-	 * Create 'credentials.php' File
+	 * Create 'config.php' File
 	 */
-	public function create_credentials_file() {
+	public function create_config_file() {
 		$host   = secure_input( 'host' ) ?: 'localhost';
 		$user   = secure_input( 'user' ) ?: 'root';
 		$pass   = filter_input( INPUT_POST, 'pass' ) ?: 'root';
 		$dbname = secure_input( 'dbname' ) ?: 'quark_cms';
 
-		$filename = 'credentials.php';
-		$content  = "<?php\n\$host   = '$host';\n\$user   = '$user';\n\$pass   = '$pass';\n\$dbname = '$dbname';\n";
-		file_put_contents( $filename, $content);
+		$filename = 'config.php';
+		$contents = "<?php\ndefine( 'DB_HOST', '$host' );\ndefine( 'DB_USER', '$user' );\ndefine( 'DB_PASSWORD', '$pass' );\ndefine( 'DB_NAME', '$dbname' );\ndefine( 'DEBUG', false );\ndefine( 'TIMEZONE', 'America/New_York' );\n";
+		file_put_contents( $filename, $contents );
 	}
 }
