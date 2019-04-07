@@ -19,7 +19,7 @@ $content = "<p>This is the home page. Currently it can only be edited with a tex
 <p>this is allowed</p>";
 ?>
 
-<h1>Welcome!</h1>
+<h1>Welcome to Quark CMS!</h1>
 <div class="content">
 <?php echo kses( $content ); ?>
 <div>
