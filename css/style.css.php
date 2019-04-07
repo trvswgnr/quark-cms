@@ -1,13 +1,9 @@
 <?php
 header("Content-type: text/css; charset: UTF-8");
 
-require 'functions.php';
+require '../functions.php';
+require 'normalize.css';
 
-$normalize = 'https://necolas.github.io/normalize.css/8.0.1/normalize.css';
-echo remote_file_contents( $normalize );
-?>
-
-<?php
 $brand_color = '#990000';
 $link_color  = '#555555';
 ?>
