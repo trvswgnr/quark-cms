@@ -61,7 +61,7 @@ class Setup {
 		$dbname = secure_input( 'dbname' ) ?: 'quark_cms';
 
 		$filename = 'credentials.php';
-		$content  = "<?php \$host   = '$host';\n\$user   = '$user';\n\$pass   = '$pass';\n\$dbname = '$dbname';\n";
+		$content  = "<?php\n\$host   = '$host';\n\$user   = '$user';\n\$pass   = '$pass';\n\$dbname = '$dbname';\n";
 		file_put_contents( $filename, $content);
 	}
 }
