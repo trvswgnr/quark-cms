@@ -5,13 +5,34 @@
  * @package quark
  */
 
+function get_string_between( $string, $start, $end ) {
+	$string = ' ' . $string;
+	$ini    = strpos( $string, $start );
+	if ( $ini == 0 ) {
+		return '';
+	}
+	$ini += strlen( $start );
+	$len  = strpos( $string, $end, $ini ) - $ini;
+	return substr( $string, $ini, $len );
+}
+
+function ends_with( $haystack, $needle ) {
+	$length = strlen( $needle );
+
+	if ( $length == 0 ) {
+		return true;
+	}
+
+	return ( substr( $haystack, -$length ) === $needle );
+}
+
 /**
  * Get Site URL as Variable
  *
  * @return string The static site URL.
  */
 function get_site_url() {
-	$string   = ltrim( $_SERVER['REQUEST_URI'], '/' );
+	$string   = get_string_between( $_SERVER['REQUEST_URI'], '/', '/' );
 	$host     = $_SERVER['HTTP_HOST'];
 	$protocol = ( ( ! empty( $_SERVER['HTTPS'] ) && $_SERVER['HTTPS'] != 'off' ) || $_SERVER['SERVER_PORT'] == 443 ) ? 'https://' : 'http://';
 
