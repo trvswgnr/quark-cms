@@ -1,7 +1,4 @@
 <?php
-// composer autoload.
-require_once 'vendor/autoload.php';
-
 require 'security.php';
 
 /**
