@@ -26,9 +26,6 @@ require 'class-setup.php';
 
 if ( secure_input( 'submit' ) ) {
 	$setup = new Setup();
-	$setup->create_connection_file();
-	require 'connection.php';
-	$setup->connection( $conn );
 	$redirect_url = get_site_url() . 'index.php';
 	header( "Location: $redirect_url", true, 303 );
 	die();
