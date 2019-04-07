@@ -25,3 +25,7 @@ label {
 	display: block;
 	margin-top: 1em;
 }
+
+.input-group {
+	margin: 1em 0;
+}
