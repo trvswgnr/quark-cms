@@ -119,7 +119,7 @@ function get_post( $key = null, $filter = null, $fillWithEmptyString = false ) {
  *
  * @return mixed
  */
-function cookie( $key = null, $filter = null, $fillWithEmptyString = false ) {
+function filter_cookie( $key = null, $filter = null, $fillWithEmptyString = false ) {
 	if ( ! $key ) {
 		if ( function_exists( 'filter_input_array' ) ) {
 			return $filter ? filter_input_array( INPUT_COOKIE, $filter ) : $_COOKIE;
@@ -150,7 +150,7 @@ function cookie( $key = null, $filter = null, $fillWithEmptyString = false ) {
  * @param Mixed  $value
  * @param Int    $time
  */
-function set_cookie( $key, $value, $time = SECONDS_IN_A_HOUR ) {
+function set_cookie( $key, $value, $time = SECONDS_IN_HOUR ) {
 	setcookie( $key, $value, time() + $time, '/' );
 }
 
@@ -160,7 +160,7 @@ function set_cookie( $key, $value, $time = SECONDS_IN_A_HOUR ) {
  * @param String $key
  */
 function delete_cookie( $key ) {
-	setcookie( $key, null, time() - SECONDS_IN_A_HOUR, '/' );
+	setcookie( $key, null, time() - SECONDS_IN_HOUR, '/' );
 	unset( $_COOKIE[ $key ] );
 }
 
