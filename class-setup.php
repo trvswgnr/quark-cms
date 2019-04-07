@@ -20,11 +20,16 @@ class Setup {
 	 * Constructor
 	 */
 	public function __construct() {
-		$this->create_config_file();
-		// import $conn variable.
-		require_once 'connection.php';
-		$this->conn = $conn;
-		$this->create_tables();
+		try {
+			$this->create_config_file();
+			// Import $conn PDO variable after config variables have been set.
+			require_once 'connection.php';
+			$this->conn = $conn;
+			$this->create_tables();
+			$this->create_admin_user();
+		} catch ( Exception $e ) {
+			echo 'Error creating installation: ' . $e;
+		}
 	}
 
 	/**
@@ -74,5 +79,26 @@ class Setup {
 		$filename = 'config.php';
 		$contents = "<?php\ndefine( 'DB_HOST', '$host' );\ndefine( 'DB_USER', '$user' );\ndefine( 'DB_PASSWORD', '$pass' );\ndefine( 'DB_NAME', '$dbname' );\ndefine( 'DEBUG', false );\ndefine( 'TIMEZONE', 'America/New_York' );\n";
 		file_put_contents( $filename, $contents );
+	}
+
+	/**
+	 * Create Initial Admin User
+	 */
+	public function create_admin_user() {
+		$conn     = $this->conn;
+		$created  = date( 'Y-m-d H:i:s' );
+		$user     = secure_input( 'admin_user' );
+		$email    = secure_input( 'admin_email' );
+		$password = password_hash( trim( $_POST['admin_password'] ), PASSWORD_DEFAULT );
+		$role     = 'admin';
+
+		try {
+			$sql  = 'INSERT INTO users (created, user, email, password, role) VALUES (?,?,?,?,?)';
+			$stmt = $conn->prepare( $sql );
+			$stmt->execute( [ $created, $user, $email, $password, $role ] );
+			echo '<p class="text-success">User "' . $user . '" created successfully!</p>';
+		} catch ( PDOException $e ) {
+			echo 'Error Adding User: ' . $e->getMessage();
+		}
 	}
 }
