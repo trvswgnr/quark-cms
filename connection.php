@@ -17,13 +17,20 @@ function connection() {
 	$dbname = constant( 'DB_NAME' );
 
 	try {
-		$conn = new PDO( "mysql:host=$host;", $user, $pass );
+		$conn = new PDO( "mysql:host=$host; dbname=$dbname", $user, $pass );
 		$conn->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
-		$conn->exec( "CREATE DATABASE IF NOT EXISTS $dbname; USE $dbname;" );
+		// $conn->exec( "CREATE DATABASE IF NOT EXISTS $dbname; USE $dbname;" );
 		echo '<script>console.log("Connected Successfully!");</script>';
 		return $conn;
 	} catch ( PDOException $e ) {
-		echo 'Connection failed: ' . $e->getMessage();
+		$error = $e->getMessage();
+		echo "Connection failed: $error<br>";
+		setcookie( 'ADMIN_LOGGED_IN', false );
+		echo 'Logged out.';
+		// Unset all of the session variables.
+		$_SESSION = array();
+		// Destroy the session.
+		session_destroy();
 	}
 }
 
