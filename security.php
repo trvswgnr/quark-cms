@@ -26,7 +26,61 @@ function esc_str( $str ) {
 	return htmlspecialchars( $str, ENT_COMPAT, 'UTF-8' );
 }
 
-use function esc_str as esc;
+function esc( $str ) {
+	return esc_str( $str );
+}
+
+function _deep_replace( $search, $subject ) {
+	$subject = (string) $subject;
+
+	$count = 1;
+	while ( $count ) {
+		$subject = str_replace( $search, '', $subject, $count );
+	}
+
+	return $subject;
+}
+
+function esc_url( $url, $protocols = null, $_context = 'display' ) {
+	$original_url = $url;
+
+	if ( '' == $url ) {
+		return $url;
+	}
+
+	$url = str_replace( ' ', '%20', $url );
+	$url = preg_replace( '|[^a-z0-9-~+_.?#=!&;,/:%@$\|*\'()\[\]\\x80-\\xff]|i', '', $url );
+
+	if ( '' === $url ) {
+		return $url;
+	}
+
+	if ( 0 !== stripos( $url, 'mailto:' ) ) {
+		$strip = array( '%0d', '%0a', '%0D', '%0A' );
+		$url   = _deep_replace( $strip, $url );
+	}
+
+	$url = str_replace( ';//', '://', $url );
+
+	/*
+	 If the URL doesn't appear to contain a scheme, we
+	 * presume it needs http:// prepended (unless a relative
+	 * link starting with /, # or ? or a php file).
+	 */
+	if ( strpos( $url, ':' ) === false && ! in_array( $url[0], array( '/', '#', '?' ) ) &&
+		! preg_match( '/^[a-z0-9-]+?\.php/i', $url ) ) {
+		$url = 'http://' . $url;
+	}
+
+	// Replace ampersands and single quotes only when displaying.
+	if ( 'display' == $_context ) {
+		$url = esc_str( $url );
+		$url = str_replace( '&amp;', '&#038;', $url );
+		$url = str_replace( "'", '&#039;', $url );
+	}
+
+	return $url;
+}
 
 require_once 'vendor/htmlpurifier/library/HTMLPurifier.auto.php';
 
@@ -37,6 +91,8 @@ function sanitize_html( $html ) {
 	return $clean_html;
 }
 
-var_dump( sanitize_html( '<p>gello<?php echo "boieeee"; ?></p>' ) );
+function kses( $html ) {
+	return sanitize_html( $html );
+}
 
 function is_admin() {}
