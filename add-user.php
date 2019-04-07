@@ -1,28 +1,9 @@
-<?php
-require 'header.php';
-
-// add a user.
-if ( isset( $_POST['submit'] ) ) {
-	$created  = date( 'Y-m-d H:i:s' );
-	$user     = secure_input( 'user' );
-	$email    = secure_input( 'email' );
-	$password = filter_input( INPUT_POST, 'password' );
-	$role     = secure_input( 'role' );
-
-	try {
-		$sql  = 'INSERT INTO users (created, user, email, password, role) VALUES (?,?,?,?,?)';
-		$stmt = $conn->prepare( $sql );
-		$stmt->execute( [ $created, $user, $email, $password, $role ] );
-		echo '<p class="text-success">User "' . $user . '" created successfully!</p>';
-	} catch ( PDOException $e ) {
-		echo 'Error Adding User: ' . $e->getMessage();
-	}
-}
-?>
+<?php require 'header.php'; ?>
 <div class="header">
 	<h1>Register</h1>
 </div>
-<form method="post" action="">
+<iframe width="100%" height="20px" border="0" name="dummyframe" id="dummyframe" style="border:none;"></iframe>
+<form method="post" action="register.php" target="dummyframe">
 	<div class="input-group">
 		<label>Username</label>
 		<input type="text" name="user" value="">
@@ -46,7 +27,7 @@ if ( isset( $_POST['submit'] ) ) {
 		<button type="submit" class="btn" name="submit">Register</button>
 	</div>
 	<p>
-		Already a member? <a href="login.php">Sign in</a>
+		Already a member? <a href="<?php site_url(); ?>login.php">Sign in</a>
 	</p>
 </form>
 <?php require 'footer.php'; ?>
