@@ -1,4 +1,13 @@
-<?php require 'quark-head.php'; ?>
+<?php
+/**
+ * Header Partial.
+ *
+ * @package quark
+ */
+
+// import Quark head.
+require 'quark-head.php';
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
