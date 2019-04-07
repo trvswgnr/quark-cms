@@ -67,7 +67,7 @@ function create_column() {
 	<input type="text" name="user">
 
 	<label for="pass">Password</label>
-	<input type="text" name="password">
+	<input type="text" name="pass">
 
 	<div>
 		<input type="submit" name="submit" value="Initialize Site">
