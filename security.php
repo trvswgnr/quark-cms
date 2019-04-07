@@ -16,11 +16,15 @@ function secure_input( $field, $type = 'post' ) {
 	return filter_input( $type, $field, FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES );
 }
 
+require_once 'vendor/htmlpurifier/library/HTMLPurifier.auto.php';
+
 function sanitize_html( $html ) {
 	$purifier_config = HTMLPurifier_Config::createDefault();
 	$html_purifier = new HTMLPurifier( $purifier_config );
 	$clean_html = $html_purifier->purify( $html );
 	return $clean_html;
 }
+
+var_dump(sanitize_html('<p>gello<?php echo "boieeee"; ?></p>'));
 
 function is_admin () {}
