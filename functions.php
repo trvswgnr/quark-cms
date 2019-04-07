@@ -1,19 +1,36 @@
 <?php
-function get_site_directory() {
-	$string               = ltrim( $_SERVER['REQUEST_URI'], '/' );
-	$host                 = $_SERVER['HTTP_HOST'];
-	$protocol             = ( ( ! empty( $_SERVER['HTTPS'] ) && $_SERVER['HTTPS'] != 'off' ) || $_SERVER['SERVER_PORT'] == 443 ) ? 'https://' : 'http://';
+// composer autoload.
+require_once 'vendor/autoload.php';
+
+require 'security.php';
+
+/**
+ * Get Site URL as Variable
+ *
+ * @return string The static site URL.
+ */
+function get_site_url() {
+	$string   = ltrim( $_SERVER['REQUEST_URI'], '/' );
+	$host     = $_SERVER['HTTP_HOST'];
+	$protocol = ( ( ! empty( $_SERVER['HTTPS'] ) && $_SERVER['HTTPS'] != 'off' ) || $_SERVER['SERVER_PORT'] == 443 ) ? 'https://' : 'http://';
+
 	list( $before_slash ) = explode( '/', $string );
-	return rtrim( $protocol . $host . '/' . $before_slash, '/' );
+
+	$url = rtrim( $protocol . $host . '/' . $before_slash, '/' ) . '/';
+	return $url;
 }
 
-function site_directory() {
-	echo get_site_directory();
+/**
+ * Echo Site URL
+ */
+function site_url() {
+	echo get_site_url();
 }
 
-function title_to_slug( $string ) {
-	$string = strtolower( $string );
-	$slug   = preg_replace( '/[^A-Za-z0-9-]+/', '-', $string );
+function title_to_slug( $str ) {
+	$str  = strtolower( $str );
+	$slug = preg_replace( '/[^A-Za-z0-9-]+/', '-', $str );
+	$slug = rtrim( $slug, '-' );
 	return $slug;
 }
 
