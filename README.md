@@ -22,4 +22,4 @@ Built in PHP, Quark stays close to the language instead of abstracting, which me
 * Style admin pages
 * Create REST API
 
-#### Version 0.1.0-alpha
+#### Version 0.3.0-alpha

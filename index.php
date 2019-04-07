@@ -5,7 +5,7 @@
  * @package quark
  * @desc A fast, basic CMS for building and maintaining websites.
  * @author Travis Wagner <travis@travisaw.com>
- * @version 0.1.0-alpha
+ * @version 0.3.0-alpha
  */
 
 ?>
