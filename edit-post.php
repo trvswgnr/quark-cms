@@ -1,6 +1,6 @@
-<?php require 'header.php'; ?>
-
 <?php
+require 'header.php';
+
 if ( isset( $_POST['submit'] ) ) {
 	$id       = $_GET['id'];
 	$modified = date( 'Y-m-d H:i:s' );
@@ -12,20 +12,18 @@ if ( isset( $_POST['submit'] ) ) {
 		$sql  = 'INSERT INTO posts (date, modified, title, content, type) VALUES (?,?,?,?,?)';
 		$sql  = 'UPDATE posts SET modified=?, title=?, content=? WHERE id=?';
 		$stmt = $conn->prepare( $sql );
-		$stmt->execute( [ $modified, $title, $content, $id ] );
+		$stmt->execute( [ $modified, $title, sanitize_html( $content ), $id ] );
 		echo '<p class="text-success">post updated</p>';
 	} catch ( PDOException $e ) {
 		echo '<p class="text-danger">Error Adding Row: ' . $e->getMessage() . '</p>';
 	}
 }
-?>
 
-
-<?php
 if ( ! $_GET['id'] ) {
 	echo 'no post to edit';
 	die();
 }
+
 try {
 	$post_id = $_GET['id'] ?: 1;
 	$sql = "SELECT * FROM posts WHERE ID=$post_id LIMIT 1";
@@ -34,7 +32,7 @@ try {
 	echo 'Error Getting Post: ' . $e->getMessage();
 }
 ?>
-<a href="<?php echo get_site_directory() . '/' . $post['slug']; ?>">View Post</a>
+<a href="<?php echo get_site_url() . $post['slug']; ?>">View Post</a>
 <h1>Edit Post</h1>
 <form action="" method="post">
 	<div>
