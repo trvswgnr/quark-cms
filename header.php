@@ -1,4 +1,4 @@
-<?php require 'config.php'; ?>
+<?php require 'quark-head.php'; ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
