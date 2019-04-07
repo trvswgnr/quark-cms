@@ -24,7 +24,6 @@ class Setup {
 		// import $conn variable.
 		require_once 'connection.php';
 		$this->conn = $conn;
-		$this->connection( $conn );
 		$this->create_tables();
 	}
 
@@ -49,11 +48,11 @@ class Setup {
 			$table = 'users';
 			$sql   = "CREATE TABLE IF NOT EXISTS $table(
 				id bigint(20) AUTO_INCREMENT PRIMARY KEY,
-				date_created datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
-				username varchar(100) NOT NULL,
+				created datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
+				user varchar(100) NOT NULL,
 				email varchar(100) NOT NULL,
-				user_type varchar(100) NOT NULL,
-				password varchar(100) NOT NULL);";
+				password varchar(100) NOT NULL,
+				role varchar(100) NOT NULL);";
 
 			$conn->exec( $sql );
 
@@ -69,7 +68,7 @@ class Setup {
 	public function create_credentials_file() {
 		$host   = secure_input( 'host' ) ?: 'localhost';
 		$user   = secure_input( 'user' ) ?: 'root';
-		$pass   = $_POST['pass'] ?: 'root';
+		$pass   = filter_input( INPUT_POST, 'pass' ) ?: 'root';
 		$dbname = secure_input( 'dbname' ) ?: 'quark_cms';
 
 		$filename = 'credentials.php';
