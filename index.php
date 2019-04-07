@@ -1,17 +1,19 @@
 <?php
 /**
- * Name: Quark CMS
- * Description: A fast, basic CMS for building and maintaining websites.
- * Author: Travis Wagner
- * Author URI: https://travisaw.com
- * Version: 0.1.0-alpha
+ * Quark CMS.
  *
  * @package quark
+ * @desc A fast, basic CMS for building and maintaining websites.
+ * @author Travis Wagner <travis@travisaw.com>
+ * @version 0.1.0-alpha
  */
 
 ?>
 
-<?php require 'header.php'; ?>
+<?php
+/** Lets go */
+require 'header.php';
+?>
 <?php
 $content = "<p>This is the home page. Currently it can only be edited with a text editor, which isn't desirable.</p>
 <?php echo 'evil should be escaped'; ?>

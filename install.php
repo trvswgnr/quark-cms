@@ -5,7 +5,9 @@
  * @package quark
  */
 
+// Import page header.
 require 'header.php';
+
 // Import Setup class.
 require 'class-setup.php';
 
@@ -16,6 +18,9 @@ if ( secure_input( 'submit' ) ) {
 	die();
 }
 
+/**
+ * Create a new column in table
+ */
 function create_column() {
 	try {
 		if ( ! $_POST['column_name'] ) {
@@ -34,9 +39,9 @@ function create_column() {
 	}
 }
 
-// if ( $_POST['submit_table'] ) {
-// create_column();
-// }
+if ( isset( $_POST['submit_table'] ) ) {
+	create_column();
+}
 ?>
 
 <h1>Site Setup</h1>
@@ -59,31 +64,6 @@ function create_column() {
 	</div>
 </form>
 
-<h2>Administrator</h2>
-<form method="post">
-	<div class="input-group">
-		<label>Username</label>
-		<input type="text" name="username" value="">
-	</div>
-	<div class="input-group">
-		<label>Email</label>
-		<input type="email" name="email" value="">
-	</div>
-	<div class="input-group">
-		<label>Password</label>
-		<input type="password" name="password_1">
-	</div>
-	<div class="input-group">
-		<label>Confirm password</label>
-		<input type="password" name="password_2">
-	</div>
-	<div class="input-group">
-		<button type="submit" class="btn" name="register_btn">Register</button>
-	</div>
-	<p>
-		Already a member? <a href="login.php">Sign in</a>
-	</p>
-</form>
 <!-- 
 <h2>Add Column to 'posts'</h2>
 <form action="" method="post">

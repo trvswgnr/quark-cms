@@ -1,4 +1,10 @@
-<?php require 'quark-head.php'; ?>
+<?php
+/**
+ * Header Partial.
+ */
+
+require 'quark-head.php';
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
