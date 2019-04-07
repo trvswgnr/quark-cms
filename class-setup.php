@@ -23,10 +23,13 @@ class Setup {
 		try {
 			$this->create_config_file();
 			// Import $conn PDO variable after config variables have been set.
-			require_once 'connection.php';
+			require 'connection.php';
 			$this->conn = $conn;
 			$this->create_tables();
 			$this->create_admin_user();
+			$redirect_url = get_site_url() . 'login.php?installed=true';
+			header( "Location: $redirect_url", true, 303 );
+			die();
 		} catch ( Exception $e ) {
 			echo 'Error creating installation: ' . $e;
 		}
