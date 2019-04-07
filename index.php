@@ -11,7 +11,6 @@
 ?>
 
 <?php
-/** Lets go */
 require 'header.php';
 ?>
 <?php
