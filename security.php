@@ -5,6 +5,9 @@
  * @package quark
  */
 
+// import dependencies.
+require_once 'vendor/htmlpurifier/library/HTMLPurifier.auto.php';
+require_once 'security/filter-globals.php';
 /**
  * Secure Input
  *
@@ -95,8 +98,6 @@ function esc_url( $url ) {
 	return $url;
 }
 
-require_once 'vendor/htmlpurifier/library/HTMLPurifier.auto.php';
-
 /**
  * Sanitize / Purify HTML. Removes <script> and escapes other untrustworthy tags (like PHP).
  *
@@ -116,5 +117,3 @@ function sanitize_html( $html ) {
 function kses( $html ) {
 	return sanitize_html( $html );
 }
-
-function is_admin() {}
