@@ -32,13 +32,21 @@ function ends_with( $haystack, $needle ) {
  * @return string The static site URL.
  */
 function get_site_url() {
-	$string   = get_string_between( $_SERVER['REQUEST_URI'], '/', '/' );
+	$request  = $_SERVER['REQUEST_URI'];
+	preg_match_all( '/\//', $request, $matches );
+	$number_of_slashes = count( $matches[0] );
+	if ( $number_of_slashes >= 2 ) {
+		$string = get_string_between( $request, '/', '/' );
+	} else {
+		$string = '';
+	}
 	$host     = $_SERVER['HTTP_HOST'];
 	$protocol = ( ( ! empty( $_SERVER['HTTPS'] ) && $_SERVER['HTTPS'] != 'off' ) || $_SERVER['SERVER_PORT'] == 443 ) ? 'https://' : 'http://';
 
 	list( $before_slash ) = explode( '/', $string );
 
 	$url = rtrim( $protocol . $host . '/' . $before_slash, '/' ) . '/';
+
 	return $url;
 }
 
@@ -97,4 +105,10 @@ function is_current_file( $file ) {
 
 function is_logged_in() {
 	return filter_session( 'ADMIN_LOGGED_IN' );
+}
+
+function redirect( $path ) {
+	$redirect_url = get_site_url() . $path;
+	header( "Location: $redirect_url", true, 303 );
+	die();
 }
