@@ -69,8 +69,11 @@ function get_current_file () {
 	return $match[0];
 }
 
-
 function is_current_file( $file ) {
 	$current_file = get_current_file();
 	return $file === $current_file ? true : false;
+}
+
+function is_logged_in() {
+	return filter_session( 'ADMIN_LOGGED_IN' );
 }
