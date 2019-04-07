@@ -1,8 +1,11 @@
 <?php
 /**
  * Header Partial.
+ *
+ * @package quark
  */
 
+// import Quark head.
 require 'quark-head.php';
 ?>
 <!DOCTYPE html>
