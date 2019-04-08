@@ -13,7 +13,7 @@
 <?php require 'header.php'; ?>
 
 <?php
-$content = "<p>This is the home page. Currently it can only be edited with a text editor, which isn't desirable.</p>
+$content = "<p>This is the admin home. There's not much to do here now, but it will provide dashboards in the future.</p>
 <?php echo 'evil should be escaped'; ?>
 <script>console.log('hello');</script>
 <p>this is allowed</p>";
