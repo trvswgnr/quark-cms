@@ -13,5 +13,14 @@ if ( is_logged_in() ) :
 endif;
 ?>
 </div>
+<?php if ( is_current_file( 'create-post.php' ) || is_current_file( 'edit-post.php' ) ) : ?>
+	<script src="https://cloud.tinymce.com/5/tinymce.min.js?apiKey=unt9ua16ospnja64euz4j8h7o4bicm35qq1y033fq9rf9fyl"></script>
+	<script>
+	tinymce.init( {
+		selector: '.js-content-editor',
+		plugins: 'advcode'
+	} );
+	</script>
+<?php endif; ?>
 </body>
 </html>
