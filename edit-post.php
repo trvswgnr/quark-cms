@@ -9,7 +9,6 @@ if ( isset( $_POST['submit'] ) ) {
 	$type     = 'post';
 
 	try {
-		$sql  = 'INSERT INTO posts (date, modified, title, content, type) VALUES (?,?,?,?,?)';
 		$sql  = 'UPDATE posts SET modified=?, title=?, content=? WHERE id=?';
 		$stmt = $conn->prepare( $sql );
 		$stmt->execute( [ $modified, $title, sanitize_html( $content ), $id ] );
@@ -41,7 +40,7 @@ try {
 	</div>
 	<div>
 		<label for="content">Content</label>
-		<textarea name="content"><?php echo $post['content']; ?></textarea>
+		<textarea name="content" id="primary-content-editor" class="textarea-content js-content-editor"><?php echo $post['content']; ?></textarea>
 	</div>
 	<input type="submit" name="submit" value="Submit">
 </form>

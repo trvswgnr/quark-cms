@@ -42,3 +42,12 @@ label {
 .input-group {
 	margin: 1em 0;
 }
+
+.tox-statusbar__branding {
+	display: none;
+}
+
+.textarea-content {
+	visibility: hidden;
+	min-height: 200px;
+}
