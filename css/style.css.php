@@ -10,6 +10,19 @@ $link_color  = '#555555';
 body {
 	margin: 1em;
 	font-family: 'Helvetica Neue', arial, sans-serif;
+	line-height: 1.4;
+}
+
+ul {
+	padding-left: 1.2em;
+}
+
+li {
+	margin: 0.5em 0;
+}
+
+a {
+	text-decoration: none;
 }
 
 .container {
