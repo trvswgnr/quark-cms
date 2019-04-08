@@ -32,7 +32,7 @@ try {
 	echo 'Error Getting Post: ' . $e->getMessage();
 }
 ?>
-<a href="<?php echo get_site_url() . $post['slug']; ?>">View Post</a>
+<a href="<?php echo get_site_url() . 'single.php?slug=' . $post['slug']; ?>">View Post</a>
 <h1>Edit Post</h1>
 <form action="" method="post">
 	<div>
