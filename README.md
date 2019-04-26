@@ -4,7 +4,7 @@ Quark is an unopinionated content management system that strips down the concept
 
 Built in PHP, Quark stays close to the language instead of abstracting, which means you can create in the language you know instead of learning a ton of new methods and built-in functions. Simply setup your site and start creating pages.
 
-**!!! This is a work in progress and is still VERY insecure. DO NOT HOST ON A LIVE SERVER. !!!**
+**!!! This is a work in progress !!!**
 
 ## Getting started:
 
@@ -22,4 +22,4 @@ Built in PHP, Quark stays close to the language instead of abstracting, which me
 * Style admin pages
 * Create REST API
 
-#### Version 0.3.0-alpha
+#### Version 0.4.0-alpha
